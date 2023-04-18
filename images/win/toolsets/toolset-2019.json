@@ -9,7 +9,8 @@
                 "2.5",
                 "2.6",
                 "2.7",
-                "3.0"
+                "3.0",
+                "3.1"
             ],
             "default": "2.5"
         },
@@ -24,7 +25,8 @@
                 "3.7.*",
                 "3.8.*",
                 "3.9.*",
-                "3.10.*"
+                "3.10.*",
+                "3.11.*"
             ],
             "default": "3.7.*"
         },
@@ -39,7 +41,8 @@
                 "3.7.*",
                 "3.8.*",
                 "3.9.*",
-                "3.10.*"
+                "3.10.*",
+                "3.11.*"
             ]
         },
         {
@@ -60,9 +63,9 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "12.*",
                 "14.*",
-                "16.*"
+                "16.*",
+                "18.*"
             ]
         },
         {
@@ -71,12 +74,11 @@
             "arch": "x64",
             "platform" : "win32",
             "versions": [
-                "1.15.*",
-                "1.16.*",
-                "1.17.*",
-                "1.18.*"
+                "1.18.*",
+                "1.19.*",
+                "1.20.*"
             ],
-            "default": "1.15.*"
+            "default": "1.20.*"
         }
     ],
     "powershellModules": [
@@ -125,7 +127,7 @@
             "name": "az",
             "url" : "https://raw.githubusercontent.com/Azure/az-ps-module-versions/main/versions-manifest.json",
             "versions": [
-                "7.1.0"
+                "9.3.0"
             ],
             "zip_versions": [
                 "1.0.0",
@@ -140,7 +142,8 @@
                 "4.7.0",
                 "5.5.0",
                 "5.9.0",
-                "6.6.0"
+                "6.6.0",
+                "7.5.0"
             ]
         }
     ],
@@ -179,14 +182,18 @@
         "additional_tools": [
             "cmake;3.10.2.4988404",
             "cmake;3.18.1",
+            "cmake;3.22.1",
             "patcher;v4"
         ],
         "ndk": {
-            "default": "21",
+            "default": "25",
             "versions": [
-                "21", "22", "23"
+                "23", "24", "25"
             ]
         }
+    },
+    "mingw": {
+	"version": "8.1.0"
     },
     "MsysPackages": {
         "msys2": [
@@ -319,6 +326,7 @@
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64",
             "Microsoft.VisualStudio.Component.VC.MFC.ARM64.Spectre",
             "Microsoft.VisualStudio.Component.VC.Modules.x86.x64",
+            "Microsoft.VisualStudio.Component.VC.Tools.ARM64EC",
             "Microsoft.VisualStudio.Component.VC.Redist.MSM",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM.Spectre",
             "Microsoft.VisualStudio.Component.VC.Runtimes.ARM64.Spectre",
@@ -418,10 +426,18 @@
             { "name": "node-sass" }
         ]
     },
+    "serviceFabric": {
+        "runtime": {
+            "version": "9.1.1436.9590"
+        },
+        "sdk": {
+            "version": "6.1.1436"
+        }
+    },
     "dotnet": {
         "versions": [
             "3.1",
-            "5.0"
+            "6.0"
         ],
         "tools": [
             { "name": "nbgv", "test": "nbgv --version", "getversion": "nbgv --version" }
@@ -438,10 +454,6 @@
             { "name": "innosetup" },
             { "name": "jq" },
             { "name": "NuGet.CommandLine" },
-            {
-                "name": "openssl.light",
-                "args": [ "--version=1.1.1.20181020" ]
-            },
             { "name": "packer" },
             { "name": "strawberryperl" },
             { "name": "pulumi" },
@@ -455,26 +467,30 @@
             {
                 "name": "cmake.install",
                 "args": [ "--installargs", "ADD_CMAKE_TO_PATH=\"System\"" ]
-            }
+            },
+            { "name": "imagemagick" }
         ]
     },
     "node": {
-        "default": "16"
+        "default": "18"
+    },
+    "maven": {
+        "version": "3.8"
     },
     "mysql": {
         "version": "5.7"
     },
     "mongodb": {
-        "version": "5.0"
+        "version": "5.0.15"
     },
     "nsis": {
         "version": "3.08"
     },
     "php": {
-        "version": "8.1"
+        "version": "8.2"
     },
     "llvm": {
-        "version": "13"
+        "version": "15"
     },
     "postgresql": {
         "version": "14"
@@ -482,5 +498,8 @@
     "kotlin": {
         "version": "latest",
         "binary_name": "kotlin-compiler"
+    },
+    "openssl": {
+        "version": "1.1.1"
     }
 }

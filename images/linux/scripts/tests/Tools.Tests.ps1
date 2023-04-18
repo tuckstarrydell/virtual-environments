@@ -20,8 +20,7 @@ Describe "Rust" {
         $env:RUSTUP_HOME = "/etc/skel/.rustup"
         $env:CARGO_HOME = "/etc/skel/.cargo"
     }
-    
-   
+
     It "Rustup is installed" {
         "rustup --version" | Should -ReturnZeroExitCode
     }
@@ -77,6 +76,10 @@ Describe "Docker" {
         "docker compose" | Should -ReturnZeroExitCode
     }
 
+    It "docker-credential-ecr-login" {
+        "docker-credential-ecr-login -v" | Should -ReturnZeroExitCode
+    }
+
     Context "docker images" {
         $testCases = (Get-ToolsetContent).docker.images | ForEach-Object { @{ ImageName = $_ } }
 
@@ -117,7 +120,10 @@ Describe "clang" {
 
         "clang-$ClangVersion --version" | Should -ReturnZeroExitCode
         "clang++-$ClangVersion --version" | Should -ReturnZeroExitCode
-    }   
+        "clang-format-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "clang-tidy-$ClangVersion --version" | Should -ReturnZeroExitCode
+        "run-clang-tidy-$ClangVersion --help" | Should -ReturnZeroExitCode
+    }
 }
 
 Describe "Cmake" {
@@ -126,7 +132,7 @@ Describe "Cmake" {
     }
 }
 
-Describe "erlang" {
+Describe "erlang" -Skip:(Test-IsUbuntu22) {
     $testCases = @("erl -version", "erlc -v", "rebar3 -v") | ForEach-Object { @{ErlangCommand = $_} }
 
     It "erlang <ErlangCommand>" -TestCases $testCases {
@@ -214,6 +220,16 @@ Describe "Terraform" {
     }
 }
 
+Describe "Zstd" {
+    It "zstd" {
+        "zstd --version" | Should -ReturnZeroExitCode
+    }
+
+    It "pzstd" {
+        "pzstd --version" | Should -ReturnZeroExitCode
+    }
+}
+
 Describe "Vcpkg" {
     It "vcpkg" {
         "vcpkg version" | Should -ReturnZeroExitCode
@@ -244,7 +260,7 @@ Describe "Heroku" {
     }
 }
 
-Describe "HHVM" {
+Describe "HHVM" -Skip:(Test-IsUbuntu22) {
     It "hhvm" {
         "hhvm --version" | Should -ReturnZeroExitCode
     }
@@ -252,15 +268,7 @@ Describe "HHVM" {
 
 Describe "Homebrew" {
     It "homebrew" {
-        "brew --version" | Should -ReturnZeroExitCode
-    }
-
-    Context "Packages" {
-        $testCases = (Get-ToolsetContent).brew | ForEach-Object { @{ ToolName = $_.name } }
-
-        It "<ToolName>" -TestCases $testCases {
-           "$ToolName --version" | Should -Not -BeNullOrEmpty
-        }
+        "/home/linuxbrew/.linuxbrew/bin/brew --version" | Should -ReturnZeroExitCode
     }
 }
 
@@ -316,19 +324,10 @@ Describe "Pulumi" {
     }
 }
 
-Describe "Phantomjs" {
+Describe "Phantomjs" -Skip:(Test-IsUbuntu22) {
     It "phantomjs" {
+        $env:OPENSSL_CONF="/etc/ssl"; phantomjs --version
         "phantomjs --version" | Should -ReturnZeroExitCode
-    }
-}
-
-Describe "GraalVM" -Skip:(-not (Test-IsUbuntu20)) {
-    It "graalvm" {
-        '$GRAALVM_11_ROOT/bin/java -version' | Should -ReturnZeroExitCode
-    }
-
-    It "native-image" {
-        '$GRAALVM_11_ROOT/bin/native-image --version' | Should -ReturnZeroExitCode
     }
 }
 
@@ -341,7 +340,7 @@ Describe "Containers" {
         )
 
         "$ContainerCommand -v" | Should -ReturnZeroExitCode
-    }   
+    }
 }
 
 Describe "nvm" {
@@ -402,10 +401,6 @@ Describe "Kotlin" {
 
     It "kotlinc" {
         "kotlinc -version"| Should -ReturnZeroExitCode
-    }
-
-    It "kotlinc-js" {
-        "kotlinc-js -version"| Should -ReturnZeroExitCode
     }
 
     It "kotlinc-jvm" {

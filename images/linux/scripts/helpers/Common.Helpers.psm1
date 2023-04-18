@@ -29,21 +29,25 @@ function Get-CommandResult {
     }
 }
 
-function Get-OSName {
-    lsb_release -ds
+function Get-OSVersionShort {
+    $(Get-OSVersionFull) | Take-OutputPart -Delimiter '.' -Part 0,1
+}
+
+function Get-OSVersionFull {
+    lsb_release -ds | Take-OutputPart -Part 1, 2
 }
 
 function Get-KernelVersion {
     $kernelVersion = uname -r
-    return "Linux kernel version: $kernelVersion"
-}
-
-function Test-IsUbuntu18 {
-    return (lsb_release -rs) -eq "18.04"
+    return $kernelVersion
 }
 
 function Test-IsUbuntu20 {
     return (lsb_release -rs) -eq "20.04"
+}
+
+function Test-IsUbuntu22 {
+    return (lsb_release -rs) -eq "22.04"
 }
 
 function Get-ToolsetContent {
@@ -69,7 +73,7 @@ function Get-ToolsetValue {
 
 function Get-AndroidPackages {
     $androidSDKManagerPath = "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager"
-    $androidPackages = & $androidSDKManagerPath --list --verbose
+    $androidPackages = & $androidSDKManagerPath --list --verbose 2>&1
     return $androidPackages
 }
 

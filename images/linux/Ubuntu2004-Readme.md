@@ -1,44 +1,50 @@
 | Announcements |
 |-|
-| [[All OSs] Go versions less than 1.16 will be removed on April, 11](https://github.com/actions/virtual-environments/issues/5280) |
-| [[Ubuntu] Issue with libstdc++ cannot allocate memory in static TLS block](https://github.com/actions/virtual-environments/issues/4799) |
+| [python2.7 will be removed from the images on May 15, 2023](https://github.com/actions/runner-images/issues/7401) |
+| [GraalVM JDK11 will be removed from agents on April 10, 2023](https://github.com/actions/runner-images/issues/7338) |
 ***
-# Ubuntu 20.04.4 LTS
-- Linux kernel version: 5.13.0-1017-azure
-- Image Version: 20220330.0
+# Ubuntu 20.04
+- OS Version: 20.04.6 LTS
+- Kernel Version: 5.15.0-1035-azure
+- Image Version: 20230409.1
+- Systemd version: 245.4-4ubuntu3.20
 
 ## Installed Software
+
 ### Language and Runtime
 - Bash 5.0.17(1)-release
-- Clang 10.0.0, 11.0.0, 12.0.0
-- Clang-format 10.0.0, 11.0.0, 12.0.0
-- Erlang 24.3.2 (Eshell 12.3)
-- Erlang rebar3 3.18.0
-- GNU C++ 9.4.0, 10.3.0
-- GNU Fortran 9.4.0, 10.3.0
-- Julia 1.7.2
-- Kotlin 1.6.10-release-923
-- Mono 6.12.0.122 (apt source repository: https://download.mono-project.com/repo/ubuntu stable-focal main)
-- MSBuild 16.6.0.15201 (from /usr/lib/mono/msbuild/15.0/bin/MSBuild.dll)
-- Node 16.14.2
+- Clang: 10.0.0, 11.0.0, 12.0.0
+- Clang-format: 10.0.0, 11.0.0, 12.0.0
+- Clang-tidy: 10.0.0, 11.0.0, 12.0.0
+- Dash 0.5.10.2-6
+- Erlang 25.2.3 (Eshell 13.1.5)
+- Erlang rebar3 3.20.0
+- GNU C++: 9.4.0, 10.3.0
+- GNU Fortran: 9.4.0, 10.3.0
+- Julia 1.8.5
+- Kotlin 1.8.20-release-327
+- Mono 6.12.0.182
+- MSBuild 16.10.1.31701 (Mono 6.12.0.182)
+- Node.js 18.15.0
 - Perl 5.30.0
 - Python 3.8.10
 - Python3 3.8.10
 - Ruby 2.7.0p0
-- Swift 5.6
+- Swift 5.8
 
 ### Package Management
 - cpan 1.64
-- Helm 3.8.1
-- Homebrew 3.4.4
-- Miniconda 4.11.0
-- Npm 8.5.0
+- Helm 3.11.2
+- Homebrew 4.0.11
+- Miniconda 23.1.0
+- Npm 9.5.0
+- NuGet 6.3.1.1
 - Pip 20.0.2
 - Pip3 20.0.2
-- Pipx 1.0.0
+- Pipx 1.2.0
 - RubyGems 3.1.2
-- Vcpkg  (build from master \<4f778cf09>)
-- Yarn 1.22.18
+- Vcpkg (build from commit 217194cea)
+- Yarn 1.22.19
 
 #### Environment variables
 | Name                    | Value                  |
@@ -46,214 +52,212 @@
 | CONDA                   | /usr/share/miniconda   |
 | VCPKG_INSTALLATION_ROOT | /usr/local/share/vcpkg |
 
+#### Homebrew note
+```
+Location: /home/linuxbrew
+Note: Homebrew is pre-installed on image but not added to PATH.
+run the eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" command
+to accomplish this.
+```
+
 ### Project Management
 - Ant 1.10.7
-- Gradle 7.4.1
-- Lerna 4.0.0
-- Maven 3.8.5
-- Sbt 1.6.2
+- Gradle 8.0.2
+- Lerna 6.6.1
+- Maven 3.8.8
+- Sbt 1.8.2
 
 ### Tools
-- Ansible 2.12.4
+- Ansible 2.13.8
 - apt-fast 1.9.12
-- AzCopy 10.14.1 (available by `azcopy` and `azcopy10` aliases)
-- Bazel 5.1.0
-- Bazelisk 1.11.0
-- Bicep 0.4.1318
-- Buildah 1.21.3 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- CMake 3.23.0
-- CodeQL Action Bundle 2.8.3
+- AzCopy 10.18.0 - available by `azcopy` and `azcopy10` aliases
+- Bazel 6.1.1
+- Bazelisk 1.13.2
+- Bicep 0.16.1
+- Buildah 1.22.3
+- CMake 3.26.3
+- CodeQL Action Bundles 2.12.5 2.12.6
+- Docker Amazon ECR Credential Helper 0.6.0
 - Docker Compose v1 1.29.2
-- Docker Compose v2 2.3.3+azure-1
-- Docker-Buildx 0.8.1
-- Docker-Moby Client 20.10.14+azure-1
-- Docker-Moby Server 20.10.14+azure-1
-- Fastlane 2.205.1
-- Git 2.35.1 (apt source repository: ppa:git-core/ppa)
-- Git LFS 3.1.2 (apt source repository: https://packagecloud.io/install/repositories/github/git-lfs)
+- Docker Compose v2 2.17.2+azure-1
+- Docker-Buildx 0.10.4
+- Docker-Moby Client 20.10.23+azure-2
+- Docker-Moby Server 20.10.23+azure-3
+- Fastlane 2.212.1
+- Git 2.40.0
+- Git LFS 3.3.0
 - Git-ftp 1.6.0
 - Haveged 1.9.1
-- Heroku 7.59.4
-- HHVM (HipHop VM) 4.154.1
+- Heroku 7.69.1
+- HHVM (HipHop VM) 4.172.1
 - jq 1.6
-- Kind 0.12.0
-- Kubectl 1.23.5
-- Kustomize 4.5.4
-- Leiningen 2.9.8
+- Kind 0.18.0
+- Kubectl 1.26.3
+- Kustomize 5.0.1
+- Leiningen 2.10.0
 - MediaInfo 19.09
 - Mercurial 5.3.1
-- Minikube 1.25.2
-- n 8.1.0
+- Minikube 1.30.1
+- n 9.0.1
 - Newman 5.3.2
-- nvm 0.39.1
-- OpenSSL 1.1.1f  31 Mar 2020
-- Packer 1.8.0
-- Parcel 2.4.0
-- PhantomJS 2.1.1
-- Podman 3.4.2 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
-- Pulumi 3.27.0
-- R 4.1.3
-- Skopeo 1.3.0 (apt source repository: https://download.opensuse.org/repositories/devel:/kubic:/libcontainers:/stable)
+- nvm 0.39.3
+- OpenSSL 1.1.1f-1ubuntu2.17
+- Packer 1.8.6
+- Parcel 2.8.3
+- PhantomJS 2.1.1 2.1.1
+- Podman 3.4.2
+- Pulumi 3.62.0
+- R 4.2.3
+- Skopeo 1.5.0
 - Sphinx Open Source Search Server 2.2.11
 - SVN 1.13.0
-- Terraform 1.1.7
-- yamllint 1.26.3
-- yq 4.24.2
-- zstd 1.5.2 (homebrew)
+- Terraform 1.4.4
+- yamllint 1.30.0
+- yq 4.33.2
+- zstd 1.5.5
 
 ### CLI Tools
-- Alibaba Cloud CLI 3.0.114
-- AWS CLI 2.5.0
-- AWS CLI Session manager plugin 1.2.295.0
-- AWS SAM CLI 1.43.0
-- Azure CLI (azure-cli) 2.34.1 (installation method: https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-linux?pivots=apt)
-- Azure CLI (azure-devops) 0.25.0
-- GitHub CLI 2.6.0
-- Google Cloud SDK 369.0.0 (apt source repository: https://packages.cloud.google.com/apt)
+- Alibaba Cloud CLI 3.0.161
+- AWS CLI 2.11.11
+- AWS CLI Session Manager Plugin 1.2.463.0
+- AWS SAM CLI 1.79.0
+- Azure CLI 2.47.0
+- Azure CLI (azure-devops) 0.26.0
+- GitHub CLI 2.27.0
+- Google Cloud SDK 425.0.0
 - Hub CLI 2.14.2
-- Netlify CLI 9.13.6
-- OpenShift CLI 4.10.6
-- ORAS CLI 0.12.0
-- Vercel CLI 24.0.1
+- Netlify CLI 13.2.2
+- OpenShift CLI 4.12.10
+- ORAS CLI 1.0.0
+- Vercel CLI 28.18.4
 
 ### Java
-| Version             | Vendor          | Environment Variable |
-| ------------------- | --------------- | -------------------- |
-| 8.0.322+6           | Eclipse Temurin | JAVA_HOME_8_X64      |
-| 11.0.14+1 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
-| 17.0.2+8            | Eclipse Temurin | JAVA_HOME_17_X64     |
+| Version              | Vendor          | Environment Variable |
+| -------------------- | --------------- | -------------------- |
+| 8.0.362+9            | Eclipse Temurin | JAVA_HOME_8_X64      |
+| 11.0.18+10 (default) | Eclipse Temurin | JAVA_HOME_11_X64     |
+| 17.0.6+10            | Eclipse Temurin | JAVA_HOME_17_X64     |
 
-### GraalVM
-| Version     | Environment variables |
-| ----------- | --------------------- |
-| CE 22.0.0.2 | GRAALVM_11_ROOT       |
+### PHP Tools
+- PHP: 7.4.33, 8.0.28, 8.1.17, 8.2.4
+- Composer 2.5.5
+- PHPUnit 8.5.33
+```
+Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
+```
 
-### PHP
-| Tool     | Version             |
-| -------- | ------------------- |
-| PHP      | 7.4.28 8.0.17 8.1.3 |
-| Composer | 2.2.10              |
-| PHPUnit  | 8.5.25              |
-```
-    Both Xdebug and PCOV extensions are installed, but only Xdebug is enabled.
-```
-### Haskell
-- Cabal 3.6.2.0
-- GHC 9.2.2
-- GHCup 0.1.17.6
-- Stack 2.7.5
+### Haskell Tools
+- Cabal 3.10.1.0
+- GHC 9.6.1
+- GHCup 0.1.19.2
+- Stack 2.9.3
 
 ### Rust Tools
-- Cargo 1.59.0
-- Rust 1.59.0
-- Rustdoc 1.59.0
-- Rustup 1.24.3
+- Cargo 1.68.2
+- Rust 1.68.2
+- Rustdoc 1.68.2
+- Rustup 1.25.2
 
 #### Packages
-- Bindgen 0.59.2
-- Cargo audit 0.16.0
-- Cargo clippy 0.1.59
-- Cargo outdated 
-- Cbindgen 0.21.0
-- Rustfmt 1.4.38
+- Bindgen 0.64.0
+- Cargo audit 0.17.5
+- Cargo clippy 0.1.68
+- Cargo outdated 0.11.2
+- Cbindgen 0.24.3
+- Rustfmt 1.5.1
 
 ### Browsers and Drivers
-- Google Chrome 100.0.4896.60
-- ChromeDriver 100.0.4896.20
-- Mozilla Firefox 98.0.2
-- Geckodriver 0.30.0
-- Chromium 100.0.4896.0
-- Selenium server 4.1.0
+- Google Chrome 112.0.5615.49
+- ChromeDriver 112.0.5615.49
+- Chromium 112.0.5593.0
+- Microsoft Edge 112.0.1722.34
+- Microsoft Edge WebDriver 112.0.1722.34
+- Selenium server 4.8.0
+- Mozilla Firefox 112.0
+- Geckodriver 0.33.0
 
 #### Environment variables
 | Name              | Value                               |
 | ----------------- | ----------------------------------- |
 | CHROMEWEBDRIVER   | /usr/local/share/chrome_driver      |
+| EDGEWEBDRIVER     | /usr/local/share/edge_driver        |
 | GECKOWEBDRIVER    | /usr/local/share/gecko_driver       |
 | SELENIUM_JAR_PATH | /usr/share/java/selenium-server.jar |
 
-### .NET Core SDK
-- 3.1.120 3.1.202 3.1.302 3.1.417 5.0.104 5.0.212 5.0.303 5.0.406 6.0.201
-
-### .NET tools
-- nbgv 3.4.255+06fb9182bf
+### .NET Tools
+- .NET Core SDK: 3.1.120, 3.1.202, 3.1.302, 3.1.426, 6.0.407, 7.0.104, 7.0.202
+- nbgv 3.5.119+5d25f54fec
 
 ### Databases
-- MongoDB 5.0.6 (apt source repository: https://repo.mongodb.org/apt/ubuntu)
+- MongoDB 5.0.15
 - sqlite3 3.31.1
 
 #### PostgreSQL
-- PostgreSQL 14.2 (apt source repository: https://apt.postgresql.org/pub/repos/apt/)
-- PostgreSQL Server (user:postgres)
+- PostgreSQL 14.7
+```
+User: postgres
+PostgreSQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
+```
 
-```
-    PostgreSQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start postgresql.service'
-```
 #### MySQL
-- MySQL 8.0.26
-- MySQL Server (user:root password:root)
+- MySQL 8.0.32-0ubuntu0.20.04.2
+```
+User: root
+Password: root
+MySQL service is disabled by default.
+Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
+```
 
-```
-    MySQL service is disabled by default. Use the following command as a part of your job to start the service: 'sudo systemctl start mysql.service'
-```
-#### MS SQL Server Client Tools
-- sqlcmd 17.9.0001.1
-- SqlPackage 16.0.5400.1
+#### MS SQL
+- sqlcmd 17.10.0001.1
+- SqlPackage 16.1.8089.0
 
 ### Cached Tools
+
 #### Go
-- 1.15.15
-- 1.16.15
-- 1.17.8
-- 1.18.0
+- 1.18.10
+- 1.19.8
+- 1.20.3
 
 #### Node.js
-- 12.22.11
-- 14.19.1
-- 16.14.2
-
-#### PyPy
-- 2.7.18 [PyPy 7.3.9]
-- 3.6.12 [PyPy 7.3.3]
-- 3.7.13 [PyPy 7.3.9]
-- 3.8.13 [PyPy 7.3.9]
-- 3.9.12 [PyPy 7.3.9]
+- 14.21.3
+- 16.20.0
+- 18.15.0
 
 #### Python
 - 2.7.18
 - 3.6.15
-- 3.7.12
-- 3.8.12
-- 3.9.12
-- 3.10.4
+- 3.7.16
+- 3.8.16
+- 3.9.16
+- 3.10.11
+- 3.11.3
+
+#### PyPy
+- 2.7.18 [PyPy 7.3.11]
+- 3.6.12 [PyPy 7.3.3]
+- 3.7.13 [PyPy 7.3.9]
+- 3.8.16 [PyPy 7.3.11]
+- 3.9.16 [PyPy 7.3.11]
 
 #### Ruby
 - 2.5.9
-- 2.6.9
-- 2.7.5
-- 3.0.3
-
-#### Environment variables
-| Name            | Value                               | Architecture |
-| --------------- | ----------------------------------- | ------------ |
-| GOROOT_1_15_X64 | /opt/hostedtoolcache/go/1.15.15/x64 | x64          |
-| GOROOT_1_16_X64 | /opt/hostedtoolcache/go/1.16.15/x64 | x64          |
-| GOROOT_1_17_X64 | /opt/hostedtoolcache/go/1.17.8/x64  | x64          |
-| GOROOT_1_18_X64 | /opt/hostedtoolcache/go/1.18.0/x64  | x64          |
+- 2.6.10
+- 2.7.8
+- 3.0.6
+- 3.1.4
 
 ### PowerShell Tools
-- PowerShell 7.2.2
+- PowerShell 7.2.10
 
 #### PowerShell Modules
-| Module           | Version |
-| ---------------- | ------- |
-| MarkdownPS       | 1.9     |
-| Microsoft.Graph  | 1.9.3   |
-| Pester           | 5.3.1   |
-| PSScriptAnalyzer | 1.20.0  |
-
-#### Az PowerShell Modules
-- 7.1.0 3.1.0.zip 4.4.0.zip 5.9.0.zip 6.6.0.zip
+- Az: 9.3.0
+- Az (Cached): 3.1.0.zip, 4.4.0.zip, 5.9.0.zip, 6.6.0.zip, 7.5.0.zip
+- MarkdownPS: 1.9
+- Microsoft.Graph: 1.25.0
+- Pester: 5.4.1
+- PSScriptAnalyzer: 1.21.0
 
 ### Web Servers
 | Name      | Version | ConfigFile                | ServiceStatus | ListenPort |
@@ -263,102 +267,108 @@
 | nginx     | 1.18.0  | /etc/nginx/nginx.conf     | inactive      | 80         |
 
 ### Android
-| Package Name               | Version                                                                                                                                      |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| Android Command Line Tools | 4.0                                                                                                                                          |
-| Android Emulator           | 31.2.9                                                                                                                                       |
-| Android SDK Build-tools    | 32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3 |
-| Android SDK Platform-Tools | 33.0.1                                                                                                                                       |
-| Android SDK Platforms      | android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3)             |
-| Android SDK Tools          | 26.1.1                                                                                                                                       |
-| Android Support Repository | 47.0.0                                                                                                                                       |
-| CMake                      | 3.10.2<br>3.18.1                                                                                                                             |
-| Google Play services       | 49                                                                                                                                           |
-| Google Repository          | 58                                                                                                                                           |
-| NDK                        | 21.4.7075529 (default)<br>22.1.7171670<br>23.1.7779620                                                                                       |
-| SDK Patch Applier v4       | 1                                                                                                                                            |
+| Package Name               | Version                                                                                                                                                                                                      |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Android Command Line Tools | 9.0                                                                                                                                                                                                          |
+| Android Emulator           | 32.1.12                                                                                                                                                                                                      |
+| Android SDK Build-tools    | 33.0.0 33.0.1 33.0.2<br>32.0.0<br>31.0.0<br>30.0.0 30.0.1 30.0.2 30.0.3<br>29.0.0 29.0.1 29.0.2 29.0.3<br>28.0.0 28.0.1 28.0.2 28.0.3<br>27.0.0 27.0.1 27.0.2 27.0.3                                         |
+| Android SDK Platform-Tools | 34.0.1                                                                                                                                                                                                       |
+| Android SDK Platforms      | android-33-ext5 (rev 1)<br>android-33-ext4 (rev 1)<br>android-33 (rev 2)<br>android-32 (rev 1)<br>android-31 (rev 1)<br>android-30 (rev 3)<br>android-29 (rev 5)<br>android-28 (rev 6)<br>android-27 (rev 3) |
+| Android SDK Tools          | 26.1.1                                                                                                                                                                                                       |
+| Android Support Repository | 47.0.0                                                                                                                                                                                                       |
+| CMake                      | 3.10.2<br>3.18.1<br>3.22.1                                                                                                                                                                                   |
+| Google Play services       | 49                                                                                                                                                                                                           |
+| Google Repository          | 58                                                                                                                                                                                                           |
+| NDK                        | 23.2.8568313<br>24.0.8215888<br>25.2.9519653 (default)                                                                                                                                                       |
+| SDK Patch Applier v4       | 1                                                                                                                                                                                                            |
 
 #### Environment variables
-| Name                    | Value                                                                                |
-| ----------------------- | ------------------------------------------------------------------------------------ |
-| ANDROID_HOME            | /usr/local/lib/android/sdk                                                           |
-| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/21.4.7075529 |
-| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/23.1.7779620                                          |
-| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk-bundle -> /usr/local/lib/android/sdk/ndk/21.4.7075529 |
-| ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                                                           |
+| Name                    | Value                                       |
+| ----------------------- | ------------------------------------------- |
+| ANDROID_HOME            | /usr/local/lib/android/sdk                  |
+| ANDROID_NDK             | /usr/local/lib/android/sdk/ndk/25.2.9519653 |
+| ANDROID_NDK_HOME        | /usr/local/lib/android/sdk/ndk/25.2.9519653 |
+| ANDROID_NDK_LATEST_HOME | /usr/local/lib/android/sdk/ndk/25.2.9519653 |
+| ANDROID_NDK_ROOT        | /usr/local/lib/android/sdk/ndk/25.2.9519653 |
+| ANDROID_SDK_ROOT        | /usr/local/lib/android/sdk                  |
 
 ### Cached Docker images
 | Repository:Tag          | Digest                                                                   | Created    |
 | ----------------------- | ------------------------------------------------------------------------ | ---------- |
-| alpine:3.12             | sha256:e42c1b8e03bdaa471deb198d981b52ac421441975195a20004aea624890f8b1c  | 2022-03-29 |
-| alpine:3.13             | sha256:6b6249407a7901591e094262327b79de21f2bfb9f597866f0a2bbb3b3d98e00c  | 2022-03-29 |
-| alpine:3.14             | sha256:85c63ff404e9b4daf18f264447161b50ffa70047cc4c03381478cf2c6edfa9da  | 2022-03-29 |
-| buildpack-deps:bullseye | sha256:841f6d3f91c1a25f362291ff6d6fcc755b78d9882da71621f06a7ca855abe060  | 2022-03-29 |
-| buildpack-deps:buster   | sha256:985480f24616ea7e388136cc5f1412c2ffba5e6cf38bd647859ad63f3d8ac16a  | 2022-03-29 |
-| buildpack-deps:stretch  | sha256:b4087d6c971248c3eb86ee7f06b71b3cd20c7b721807dc1ebe83ba7dce76c500  | 2022-03-29 |
-| debian:10               | sha256:1b236b48c1ef66fa08535a5153266f4959bf58f948db3e68f7d678b651d8e33a  | 2022-03-29 |
-| debian:11               | sha256:87eefc7c15610cca61db5c0fd280911c6a737c0680d807432c0bd80cd0cca39b  | 2022-03-29 |
-| debian:9                | sha256:a8cc1744bbdd5266678e3e8b3e6387e45c053218438897e86876f2eb104e5534  | 2022-03-29 |
-| moby/buildkit:latest    | sha256:c2aeafaed434edfde90706b5cf9a56935c389192858d1090e17a1440a6e96482  | 2022-03-09 |
-| node:12                 | sha256:e88281f7b3947019c8b5fe750a06122ac3c2612fe00719a133ea5bf8bfedafbb  | 2022-03-18 |
-| node:12-alpine          | sha256:41a1b6dd829a9a1b3da8817809c3ddf5e97c8bc66cbc84363f697e31c0adab4b  | 2022-03-29 |
-| node:14                 | sha256:7d38b5ed42b2ac006c3a79ef8ad9f1e912bde6cb4cb4243c188689d5aa1aa437  | 2022-03-18 |
-| node:14-alpine          | sha256:d9e58586730f7eb7c885f515f703f4a88e4a3ad8bf982aa5bb4ab6a1111aed79  | 2022-03-29 |
-| node:16                 | sha256:68e34cfcd8276ad531b12b3454af5c24cd028752dfccacce4e19efef6f7cdbe0  | 2022-03-18 |
-| node:16-alpine          | sha256:51542061b77f105c2db658035ac6070229f9ea1d3270ab78775df9a825d9a759  | 2022-03-29 |
-| ubuntu:16.04            | sha256:0f71fa8d4d2d4292c3c617fda2b36f6dabe5c8b6e34c3dc5b0d17d4e704bd39c  | 2021-08-31 |
-| ubuntu:18.04            | sha256:d8ac28b7bec51664c6b71a9dd1d8f788127ff310b8af30820560973bcfc605a0  | 2022-03-18 |
-| ubuntu:20.04            | sha256:bea6d19168bbfd6af8d77c2cc3c572114eb5d113e6f422573c93cb605a0e2ffb  | 2022-03-18 |
+| alpine:3.14             | sha256:0f2d5c38dd7a4f4f733e688e3a6733cb5ab1ac6e3cb4603a5dd564e5bfb80eed  | 2023-03-29 |
+| alpine:3.15             | sha256:ecbdce53b2c2f43ab1b19418bcbd3f120a23547d9497030c8d978114512b883e  | 2023-03-29 |
+| alpine:3.16             | sha256:c2b622f6e510a0d25bccaffa9e67b75a6860cb09b74bb58cfc36a9ef4331109f  | 2023-03-29 |
+| alpine:3.17             | sha256:124c7d2707904eea7431fffe91522a01e5a861a624ee31d03372cc1d138a3126  | 2023-03-29 |
+| buildpack-deps:bullseye | sha256:d2e6d0b6233d9da4534d22e96ea4338fbf36a7657b6d60aae20260140ce43148  | 2023-03-23 |
+| buildpack-deps:buster   | sha256:99144e49732c842c74ab0fd2fbd24301ee490ec841fbb9c4fa3a99354e29fbec  | 2023-03-23 |
+| buildpack-deps:stretch  | sha256:78e995165a5788c2f55aed6e548d8f6c1534830d4310c870408fccb2da8c5b2e  | 2022-06-23 |
+| debian:10               | sha256:235f2a778fbc0d668c66afa9fd5f1efabab94c1d6588779ea4e221e1496f89da  | 2023-03-23 |
+| debian:11               | sha256:7b991788987ad860810df60927e1adbaf8e156520177bd4db82409f81dd3b721  | 2023-03-23 |
+| debian:9                | sha256:c5c5200ff1e9c73ffbf188b4a67eb1c91531b644856b4aefe86a58d2f0cb05be  | 2022-06-23 |
+| moby/buildkit:latest    | sha256:ca34989052fc2467dcd283d2000c2ad8c7cd6213c5ff0fcabef1a9cfb0651b3a  | 2023-03-23 |
+| node:14                 | sha256:cc66d3cff89973711adc900892ed37f74da3c46182992b5ac5c41c3df1ddb712  | 2023-03-23 |
+| node:14-alpine          | sha256:434215b487a329c9e867202ff89e704d3a75e554822e07f3e0c0f9e606121b33  | 2023-03-29 |
+| node:16                 | sha256:d70de5be007866473408af5cc39f6039d990d8d4f72ae13438b0b4f83b904b31  | 2023-03-29 |
+| node:16-alpine          | sha256:b4a72f83f52bbe3970bb74a15e44ec4cf6e873ad4787473dfc8a26f5b4e29dd2  | 2023-03-29 |
+| node:18                 | sha256:c21209748c829660e0b49cbd14d2f9d81ea82ffb02a8a7932ebacf70d01573a3  | 2023-03-23 |
+| node:18-alpine          | sha256:47d97b93629d9461d64197773966cc49081cf4463b1b07de5a38b6bd5acfbe9d  | 2023-03-29 |
+| ubuntu:16.04            | sha256:1f1a2d56de1d604801a9671f301190704c25d604a416f59e03c04f5c6ffee0d6  | 2021-08-31 |
+| ubuntu:18.04            | sha256:8aa9c2798215f99544d1ce7439ea9c3a6dfd82de607da1cec3a8a2fae005931b  | 2023-03-08 |
+| ubuntu:20.04            | sha256:24a0df437301598d1a4b62ddf59fa0ed2969150d70d748c84225e6501e9c36b9  | 2023-03-08 |
 
 ### Installed apt packages
 | Name                   | Version                           |
 | ---------------------- | --------------------------------- |
 | acl                    | 2.2.53-6                          |
 | aria2                  | 1.35.0-1build1                    |
-| binutils               | 2.34-6ubuntu1.3                   |
+| autoconf               | 2.69-11.1                         |
+| automake               | 1:1.16.1-4ubuntu6                 |
+| binutils               | 2.34-6ubuntu1.4                   |
 | bison                  | 2:3.5.1+dfsg-1                    |
 | brotli                 | 1.0.7-6ubuntu0.1                  |
 | build-essential        | 12.8ubuntu1.1                     |
 | bzip2                  | 1.0.8-2                           |
 | coreutils              | 8.30-3ubuntu2                     |
-| curl                   | 7.68.0-1ubuntu2.7                 |
-| dbus                   | 1.12.16-2ubuntu2.1                |
-| dnsutils               | 1:9.16.1-0ubuntu2.10              |
-| dpkg                   | 1.19.7ubuntu3                     |
+| curl                   | 7.68.0-1ubuntu2.18                |
+| dbus                   | 1.12.16-2ubuntu2.3                |
+| dnsutils               | 1:9.16.1-0ubuntu2.14              |
+| dpkg                   | 1.19.7ubuntu3.2                   |
 | fakeroot               | 1.24-1                            |
 | file                   | 1:5.38-4                          |
 | flex                   | 2.6.4-6.2                         |
 | fonts-noto-color-emoji | 0\~20200916-1\~ubuntu20.04.1      |
 | ftp                    | 0.17-34.1                         |
-| gnupg2                 | 2.2.19-3ubuntu2.1                 |
+| gnupg2                 | 2.2.19-3ubuntu2.2                 |
 | haveged                | 1.9.1-6ubuntu1                    |
-| imagemagick            | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
+| imagemagick            | 8:6.9.10.23+dfsg-2.1ubuntu11.7    |
 | iproute2               | 5.5.0-1ubuntu1                    |
 | iputils-ping           | 3:20190709-3                      |
 | jq                     | 1.6-1ubuntu0.20.04.1              |
-| lib32z1                | 1:1.2.11.dfsg-2ubuntu1.2          |
+| lib32z1                | 1:1.2.11.dfsg-2ubuntu1.5          |
 | libc++-dev             | 1:10.0-50\~exp1                   |
 | libc++abi-dev          | 1:10.0-50\~exp1                   |
-| libcurl4               | 7.68.0-1ubuntu2.7                 |
+| libcurl4               | 7.68.0-1ubuntu2.18                |
 | libgbm-dev             | 21.2.6-0ubuntu0.1\~20.04.2        |
 | libgconf-2-4           | 3.2.6-6ubuntu1                    |
 | libgsl-dev             | 2.5+dfsg-6build1                  |
 | libgtk-3-0             | 3.24.20-0ubuntu1.1                |
 | libmagic-dev           | 1:5.38-4                          |
-| libmagickcore-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
-| libmagickwand-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.4    |
+| libmagickcore-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.7    |
+| libmagickwand-dev      | 8:6.9.10.23+dfsg-2.1ubuntu11.7    |
 | libsecret-1-dev        | 0.20.4-0ubuntu1                   |
-| libsqlite3-dev         | 3.31.1-4ubuntu0.2                 |
-| libunwind8             | 1.2.1-9build1                     |
+| libsqlite3-dev         | 3.31.1-4ubuntu0.5                 |
+| libtool                | 2.4.6-14                          |
+| libunwind8             | 1.2.1-9ubuntu0.1                  |
 | libxkbfile-dev         | 1:1.1.0-1                         |
 | libxss1                | 1:1.2.3-1                         |
-| locales                | 2.31-0ubuntu9.7                   |
+| libyaml-dev            | 0.2.2-1                           |
+| locales                | 2.31-0ubuntu9.9                   |
 | m4                     | 1.4.18-4                          |
 | mediainfo              | 19.09-1build1                     |
 | mercurial              | 5.3.1-1ubuntu1                    |
 | net-tools              | 1.60+git20180626.aebd88e-1ubuntu1 |
 | netcat                 | 1.206-1ubuntu1                    |
-| openssh-client         | 1:8.2p1-4ubuntu0.4                |
+| openssh-client         | 1:8.2p1-4ubuntu0.5                |
 | p7zip-full             | 16.02+dfsg-7build1                |
 | p7zip-rar              | 16.02-3build1                     |
 | parallel               | 20161222-1.1                      |
@@ -368,27 +378,27 @@
 | pollinate              | 4.33-3ubuntu1.20.04.1             |
 | python-is-python3      | 3.8.2-4                           |
 | rpm                    | 4.14.2.1+dfsg1-1build2            |
-| rsync                  | 3.1.3-8ubuntu0.2                  |
+| rsync                  | 3.1.3-8ubuntu0.5                  |
 | shellcheck             | 0.7.0-2build2                     |
 | sphinxsearch           | 2.2.11-2ubuntu2                   |
-| sqlite3                | 3.31.1-4ubuntu0.2                 |
-| ssh                    | 1:8.2p1-4ubuntu0.4                |
+| sqlite3                | 3.31.1-4ubuntu0.5                 |
+| ssh                    | 1:8.2p1-4ubuntu0.5                |
 | sshpass                | 1.06-1                            |
-| subversion             | 1.13.0-3                          |
-| sudo                   | 1.8.31-1ubuntu1.2                 |
+| subversion             | 1.13.0-3ubuntu0.2                 |
+| sudo                   | 1.8.31-1ubuntu1.4                 |
 | swig                   | 4.0.1-5build1                     |
+| tar                    | 1.30+dfsg-7ubuntu0.20.04.3        |
 | telnet                 | 0.17-41.2build1                   |
 | texinfo                | 6.7.0.dfsg.2-5                    |
 | time                   | 1.7-25.1build1                    |
 | tk                     | 8.6.9+1                           |
-| tzdata                 | 2022a-0ubuntu0.20.04              |
-| unzip                  | 6.0-25ubuntu1                     |
+| tzdata                 | 2022g-0ubuntu0.20.04.1            |
+| unzip                  | 6.0-25ubuntu1.1                   |
 | upx                    | 3.95-2build1                      |
 | wget                   | 1.20.3-1ubuntu2                   |
 | xorriso                | 1.5.2-1                           |
-| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.2       |
-| xz-utils               | 5.2.4-1ubuntu1                    |
+| xvfb                   | 2:1.20.13-1ubuntu1\~20.04.8       |
+| xz-utils               | 5.2.4-1ubuntu1.1                  |
 | zip                    | 3.0-11build1                      |
 | zsync                  | 0.6.2-3ubuntu1                    |
-
 

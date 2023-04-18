@@ -28,17 +28,12 @@ function Get-EnvironmentVariable($variable) {
 function Get-OSVersion {
     $osVersion = [Environment]::OSVersion
     $osVersionMajorMinor = $osVersion.Version.ToString(2)
-    # Monterey needs future review:
-    # [Environment]::OSVersion returns 11.0 for Monterey preview.
-    [SemVer]$osMontereyVersion = sw_vers -productVersion
     return [PSCustomObject]@{
         Version = $osVersion.Version
         Platform = $osVersion.Platform
-        IsCatalina = $osVersionMajorMinor -eq "10.15"
-        IsBigSur = $osVersionMajorMinor -eq "11.0"
-        IsMonterey = $osMontereyVersion.Major -eq "12"
-        IsLessThanMonterey = $osMontereyVersion -lt "12.0"
-        IsHigherThanCatalina = [SemVer]$osVersion.Version -ge "11.0"
+        IsBigSur = $osVersion.Version.Major -eq "11"
+        IsMonterey = $osVersion.Version.Major -eq "12"
+        IsVentura = $osVersion.Version.Major -eq "13"
     }
 }
 
@@ -106,7 +101,8 @@ function Start-DownloadWithRetry {
         [string] $Url,
         [string] $Name,
         [string] $DownloadPath = "${env:Temp}",
-        [int] $Retries = 20
+        [int] $Retries = 20,
+        [int] $Interval = 30
     )
 
     if ([String]::IsNullOrEmpty($Name)) {
@@ -135,8 +131,8 @@ function Start-DownloadWithRetry {
                 exit 1
             }
 
-            Write-Host "Waiting 30 seconds before retrying. Retries left: $Retries"
-            Start-Sleep -Seconds 30
+            Write-Host "Waiting $Interval seconds before retrying. Retries left: $Retries"
+            Start-Sleep -Seconds $Interval
         }
     }
 

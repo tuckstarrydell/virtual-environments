@@ -9,6 +9,8 @@ New-Item -Path C:\Temp -Force -ItemType Directory
 
 # Set environment variables
 Set-SystemVariable -SystemVariable DOTNET_MULTILEVEL_LOOKUP -Value "0"
+Set-SystemVariable -SystemVariable DOTNET_NOLOGO -Value "1"
+Set-SystemVariable -SystemVariable DOTNET_SKIP_FIRST_TIME_EXPERIENCE -Value "1"
 
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor "Tls12"
 
@@ -53,7 +55,7 @@ function Invoke-Warmup (
 function Fix-ImportPublishProfile (
     $SdkVersion
 ) {
-    if ((Test-IsWin16) -or (Test-IsWin19)) {
+    if (Test-IsWin19) {
         # Fix for issue https://github.com/dotnet/sdk/issues/1276.  This will be fixed in 3.1.
         $sdkTargetsName = "Microsoft.NET.Sdk.ImportPublishProfile.targets"
         $sdkTargetsUrl = "https://raw.githubusercontent.com/dotnet/sdk/82bc30c99f1325dfaa7ad450be96857a4fca2845/src/Tasks/Microsoft.NET.Build.Tasks/targets/${sdkTargetsName}"

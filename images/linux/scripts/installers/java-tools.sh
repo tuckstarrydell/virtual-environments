@@ -38,19 +38,20 @@ createJavaEnvironmentalVariable() {
 }
 
 enableRepositories() {
-    # Add Adopt PPA
-    wget -qO - "https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public" | apt-key add -
-    add-apt-repository --yes https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/
+
+osLabel=$(getOSVersionLabel)
+
+    if isUbuntu20; then
+        # Add Adopt PPA
+        wget -qO - https://adoptopenjdk.jfrog.io/adoptopenjdk/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adopt.gpg
+        echo "deb [signed-by=/usr/share/keyrings/adopt.gpg] https://adoptopenjdk.jfrog.io/adoptopenjdk/deb/ $osLabel main" > /etc/apt/sources.list.d/adopt.list
+    fi
 
     # Add Addoptium PPA
-    wget -qO - "https://packages.adoptium.net/artifactory/api/gpg/key/public" | apt-key add -
-    add-apt-repository --yes https://packages.adoptium.net/artifactory/deb/
+    # apt-key is deprecated, dearmor and add manually
+    wget -qO - https://packages.adoptium.net/artifactory/api/gpg/key/public | gpg --dearmor > /usr/share/keyrings/adoptium.gpg
+    echo "deb [signed-by=/usr/share/keyrings/adoptium.gpg] https://packages.adoptium.net/artifactory/deb/ $osLabel main" > /etc/apt/sources.list.d/adoptium.list
 
-    if isUbuntu18 ; then
-        # Install GPG Key for Azul Open JDK. See https://www.azul.com/downloads/azure-only/zulu/
-        apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 0xB1998361219BD9C9
-        apt-add-repository "deb https://repos.azul.com/azure-only/zulu/apt stable main"
-    fi
 }
 
 installOpenJDK() {
@@ -121,18 +122,13 @@ for jdkVendor in ${jdkVendors[@]}; do
     done
 done
 
-# Adopt 12 is only available for Ubuntu 18.04
-if isUbuntu18; then
-    createJavaEnvironmentalVariable "12" "Adopt"
-fi
-
 # Install Ant
 apt-get install -y --no-install-recommends ant ant-optional
 echo "ANT_HOME=/usr/share/ant" | tee -a /etc/environment
 
 # Install Maven
 mavenVersion=$(get_toolset_value '.java.maven')
-mavenDownloadUrl="https://www-eu.apache.org/dist/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
+mavenDownloadUrl="https://dlcdn.apache.org/maven/maven-3/${mavenVersion}/binaries/apache-maven-${mavenVersion}-bin.zip"
 download_with_retries ${mavenDownloadUrl} "/tmp" "maven.zip"
 unzip -qq -d /usr/share /tmp/maven.zip
 ln -s /usr/share/apache-maven-${mavenVersion}/bin/mvn /usr/bin/mvn
@@ -149,6 +145,14 @@ download_with_retries ${gradleDownloadUrl} "/tmp" "gradleLatest.zip"
 unzip -qq -d /usr/share /tmp/gradleLatest.zip
 ln -s /usr/share/gradle-"${gradleLatestVersion}"/bin/gradle /usr/bin/gradle
 echo "GRADLE_HOME=$(find /usr/share -depth -maxdepth 1 -name "gradle*")" | tee -a /etc/environment
+
+# Delete java repositories and keys
+rm -f /etc/apt/sources.list.d/adopt.list
+rm -f /etc/apt/sources.list.d/adoptium.list
+rm -f /etc/apt/sources.list.d/zulu.list
+rm -f /usr/share/keyrings/adopt.gpg
+rm -f /usr/share/keyrings/adoptium.gpg
+rm -f /usr/share/keyrings/zulu.gpg
 
 reloadEtcEnvironment
 invoke_tests "Java"

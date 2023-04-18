@@ -60,6 +60,11 @@
         },
         {
             "type": "file",
+            "source": "../../helpers/software-report-base",
+            "destination": "~/image-generation/software-report/"
+        },
+        {
+            "type": "file",
             "source": "./helpers",
             "destination": "~/image-generation/"
         },
@@ -92,6 +97,14 @@
             "type": "file",
             "source": "./toolsets/toolset-11.json",
             "destination": "~/image-generation/toolset.json"
+        },
+        {
+            "type": "shell",
+            "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
+            "scripts": [
+                "./provision/core/xcode-clt.sh",
+                "./provision/core/homebrew.sh"
+            ]
         },
         {
             "type": "shell",
@@ -135,7 +148,6 @@
             "execute_command": "chmod +x {{ .Path }}; {{ .Vars }} {{ .Path }}",
             "pause_before": "30s",
             "scripts": [
-                "./provision/core/homebrew.sh",
                 "./provision/core/open_windows_check.sh",
                 "./provision/core/powershell.sh",
                 "./provision/core/dotnet.sh",
@@ -145,6 +157,7 @@
                 "./provision/core/ruby.sh",
                 "./provision/core/rubygem.sh",
                 "./provision/core/git.sh",
+                "./provision/core/mongodb.sh",
                 "./provision/core/node.sh"
             ],
             "environment_vars": [
@@ -189,7 +202,6 @@
                 "./provision/core/apache.sh",
                 "./provision/core/nginx.sh",
                 "./provision/core/postgresql.sh",
-                "./provision/core/mongodb.sh",
                 "./provision/core/audiodevice.sh",
                 "./provision/core/vcpkg.sh",
                 "./provision/core/miniconda.sh",
@@ -200,7 +212,7 @@
                 "./provision/core/pypy.sh",
                 "./provision/core/pipx-packages.sh",
                 "./provision/core/bicep.sh",
-                "./provision/core/graalvm.sh"
+                "./provision/core/codeql-bundle.sh"
             ],
             "environment_vars": [
                 "API_PAT={{user `github_api_pat`}}"

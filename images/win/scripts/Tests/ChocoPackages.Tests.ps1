@@ -46,12 +46,6 @@ Describe "Nuget" {
     }
 }
 
-Describe "OpenSSL" {
-    It "OpenSSL" {
-       "openssl version" | Should -ReturnZeroExitCode
-    }
-}
-
 Describe "Packer" {
     It "Packer" {
        "packer --version" | Should -ReturnZeroExitCode
@@ -101,5 +95,11 @@ Describe "Julia" {
 Describe "CMake" {
     It "cmake" {
         "cmake --version" | Should -ReturnZeroExitCode
+    }
+}
+
+Describe "ImageMagick" {
+    It "ImageMagick" {
+        "magick -version" | Should -ReturnZeroExitCode
     }
 }
